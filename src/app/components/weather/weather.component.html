@@ -1,0 +1,21 @@
+<div class="site-section">
+    <div class="container">
+        <!-- <h6>{{test | uniqueOcc | json }}</h6> -->
+        <h4 class="text-center">{{title | titlecase}} {{actualDate | date:"dd/MM-yyyy"}} </h4>
+        <form [formGroup]="weatherForm">
+            <div class="form-group" style="margin: 30px;">
+                <label for=""> Search By Weather:</label>
+                <input type="text" formControlName="searchWeather"  class="form-control" />
+                <button class="m-4" (click)="searchWeather()">Search</button>
+            </div>
+        </form>
+
+        <div>
+            {{response.data.weather}}
+            {{response.data.temp}}
+
+        </div>
+       
+
+    </div>
+</div>

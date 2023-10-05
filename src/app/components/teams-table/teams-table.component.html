@@ -1,0 +1,31 @@
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+                <table class="table custom-table">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>Name</th>
+                      <th>Owner</th>
+                      <th>Fondation</th>
+                      <th>Stadium</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let team of teams">
+                      <td>{{team.id}}</td>
+                      <td><strong class="text-white">{{team.name}}</strong></td>
+                      <td> {{team.owner}} </td>
+                      <td> {{team.fondation}}</td>
+                      <td> {{team.stadium}} </td>
+                      <td> <button class="btn btn-success">Display</button> 
+                        <button class="btn btn-warning">Edit</button> 
+                        <button class="btn btn-danger">Delete</button> </td>                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+    
+    </div>
+</div>

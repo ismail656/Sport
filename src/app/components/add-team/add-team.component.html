@@ -1,0 +1,28 @@
+<app-banner [X]="title"></app-banner>
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <form #formGroup="ngForm" (ngSubmit)="addTeam()">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="team.name" name="name" class="form-control" placeholder="Name" id="name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="team.owner" name="owner"  class="form-control" placeholder="Owner" id="owner">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" [(ngModel)]="team.foundation" name="foundation"  class="form-control" placeholder="Foundation" id="foundation">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="team.stadium" name="stadium" class="form-control" placeholder="Stadium" id="stadium">
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-primary py-3 px-5" value="Add">
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</div>

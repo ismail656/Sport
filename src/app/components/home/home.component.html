@@ -1,0 +1,21 @@
+<!--word Cap event-->
+<app-cup-event></app-cup-event>
+
+<!--score-->
+<app-result [match]="match"></app-result>
+
+<!--Lastest News-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let player of players">
+      <app-info [player]="player"></app-info>
+    </div>
+  </div>
+</div>
+
+<!--Standings-->
+
+<app-standings></app-standings>
+
+<!--blog-->
+<app-blog></app-blog>

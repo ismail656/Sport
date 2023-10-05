@@ -1,0 +1,72 @@
+<div class="site-section">
+    <div class="container">
+        <!-- <h6>{{test | uniqueOcc | json }}</h6> -->
+        <h4 class="text-center">{{title | titlecase}} {{actualDate | date:"dd/MM-yyyy"}} </h4>
+        <form>
+            <div class="form-group" style="margin: 30px;">
+                <label for=""> Search By Team</label>
+                <input type="text" [(ngModel)]="term" name="term" class="form-control" />
+            </div>
+        </form>
+        <div class="row">
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Team One</th>
+                        <th>Team Two</th>
+                        <th>Score One</th>
+                        <th>Score Two</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let match of pageOfItems | myFilter:term">
+                        <td>{{match._id}}</td>
+                        <td><strong class="text-white">{{match.teamOne | reverse | uppercase}}</strong></td>
+                        <td> {{match.teamTwo | uppercase}} </td>
+                        <td> {{match.scoreOne}}</td>
+                        <td> {{match.scoreTwo}} </td>
+                        <td> <button class="btn btn-success" (click)="goToDisplay(match.id)">Display</button>
+                            <button class="btn btn-warning" (click)="goToEditMatches(match.id)">Edit</button>
+                            <button class="btn btn-danger" (click)="deleteMatchById(match.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <div class="card-footer pb-0 pt-3">
+                    <jw-pagination [items]="matches" [pageSize]="3" (changePage)="onChangePage($event)"></jw-pagination>
+                </div>
+            </table>
+            <!--Teste Fonction Trie-->
+            <div class="text-center" style="width: 100%; margin-top: 200px;">
+                <h1 class="text-center text-danger">Teste de la fonction de trie </h1>
+            </div>
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <td> <button class="btn btn-success" (click)="triCroissentProduct()">Croissent</button>
+                            <button class="btn btn-warning" (click)="triDecroissentProduct()">Décroissent</button>
+                            <button class="btn btn-danger" (click)="noFiltre()">No Filtre</button>
+                            <button class="btn btn-danger" (click)="uniqueProduct()">No Filtre</button>
+
+                        </td>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of allproduct">
+                        <td>{{product.id}}</td>
+                        <td><strong class="text-white">{{product.name}}</strong></td>
+                        <td> {{product.price}} </td>
+                        <td> Vide </td>
+                        <td> {{product.quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<app-banner [X]="title"></app-banner>
+<div class="latest-news">
+    <div class="container">
+        <div class="row no-gutters">
+            <!--Players-->
+            <div class="row no-gutters">
+                <!--Info-->
+                <div class="col-md-4" *ngFor="let player of players">
+                    <app-info [player]="player"></app-info>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

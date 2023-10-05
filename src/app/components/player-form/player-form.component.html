@@ -1,0 +1,62 @@
+<div class="hero overlay" style="background-image: url('assets/images/bg_3.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9 mx-auto text-center">
+                <h1 class="text-white">Player Form</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <form [formGroup]="playerForm">
+                    <div class="form-group">
+                        <input type="text" formControlName="name" class="form-control" placeholder="Name" id="name">
+                        <div
+                            *ngIf="playerForm.controls['name'].invalid && (playerForm.controls['name'].touched || playerForm.controls['name'].dirty) ">
+                            <!--se pointer sur une input idForm.controls['input']-->
+                            <div *ngIf="playerForm.controls['name'].errors.required">
+                                Name is Required
+                            </div>
+                            <div *ngIf="playerForm.controls['name'].errors.minlength">
+                                Name Shoude Have At Least 3 carac
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" formControlName="age" class="form-control" placeholder="Age" id="age">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" formControlName="nbr" class="form-control" placeholder="nbr" id="Number">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" formControlName="position" class="form-control" placeholder="Position"
+                            id="position">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="" (change)="getTeamId($event)">
+                            <option *ngFor="let team of teamsTab"  [value]="team._id">{{team.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="visibility: hidden;">
+                        <input type="file" class="form-control" #filePicker (change)="onImageSelected($event)">
+                    </div>
+                    <div class="text-center my-4">
+                        <button class="btn btn-success" (click)="filePicker.click()">Select Your Photo</button>
+                    </div>
+                    <div class="my-4 text-center">
+                        <img [src]="imagePreview" alt="" width="200px">
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-primary py-3 px-5" value="Add/Edit"
+                            (click)="addOrEditePlayer()">
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</div>
