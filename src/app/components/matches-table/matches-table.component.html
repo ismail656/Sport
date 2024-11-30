@@ -4,8 +4,8 @@
         <h4 class="text-center">{{title | titlecase}} {{actualDate | date:"dd/MM-yyyy"}} </h4>
         <form>
             <div class="form-group" style="margin: 30px;">
-                <label for=""> Search By Team</label>
-                <input type="text" [(ngModel)]="term" name="term" class="form-control" />
+                <label for=""> Search By Team:</label>
+                <input type="text" [(ngModel)]="term" name="term" class="form-control"/>
             </div>
         </form>
         <div class="row">
@@ -27,16 +27,16 @@
                         <td> {{match.teamTwo | uppercase}} </td>
                         <td> {{match.scoreOne}}</td>
                         <td> {{match.scoreTwo}} </td>
-                        <td> <button class="btn btn-success" (click)="goToDisplay(match.id)">Display</button>
-                            <button class="btn btn-warning" (click)="goToEditMatches(match.id)">Edit</button>
-                            <button class="btn btn-danger" (click)="deleteMatchById(match.id)">Delete</button>
+                        <td> <button class="btn btn-success" (click)="goToDisplay(match._id)">Display</button>
+                            <button class="btn btn-warning" (click)="goToEditMatches(match._id)">Edit</button>
+                            <button class="btn btn-danger" (click)="deleteMatchById(match._id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
-                <div class="card-footer pb-0 pt-3">
-                    <jw-pagination [items]="matches" [pageSize]="3" (changePage)="onChangePage($event)"></jw-pagination>
-                </div>
             </table>
+            <div class="card-footer pb-0 pt-5 m-auto">
+                <jw-pagination [items]="matches" [pageSize]="2" (changePage)="onChangePage($event)" ></jw-pagination>
+            </div>
             <!--Teste Fonction Trie-->
             <div class="text-center" style="width: 100%; margin-top: 200px;">
                 <h1 class="text-center text-danger">Teste de la fonction de trie </h1>
@@ -51,7 +51,6 @@
                             <button class="btn btn-warning" (click)="triDecroissentProduct()">Décroissent</button>
                             <button class="btn btn-danger" (click)="noFiltre()">No Filtre</button>
                             <button class="btn btn-danger" (click)="uniqueProduct()">No Filtre</button>
-
                         </td>
                         <th>Quantity</th>
                     </tr>
@@ -67,6 +66,5 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>

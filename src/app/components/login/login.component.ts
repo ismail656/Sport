@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         console.log('here response from backend after login', response);
         if (response.msg != "2") {
-          this.errorMsg = "Please check your Email or PWD"
+          this.errorMsg = "Please check your Email or Password!"
         } else {
           sessionStorage.setItem("token", response.token);
           this.router.navigate([""]);
@@ -30,5 +30,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 }

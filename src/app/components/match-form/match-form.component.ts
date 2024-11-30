@@ -27,8 +27,8 @@ export class MatchFormComponent implements OnInit {
     if (this.matchId) {
       this.title = "Edit Match"
       this.mService.getMatchByID(this.matchId).subscribe((response) => {
-        console.log("here response from backend : ", response.matche);
-        this.match=response.matche;
+        console.log("here response from backend : ", response.match);
+        this.match=response.match;
         
       })
     }

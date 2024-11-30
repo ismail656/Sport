@@ -7,14 +7,16 @@ import { HttpClient } from '@angular/common/http';
 
 export class UserService {
   userURL: string = "http://localhost:3000/users";
+  
   constructor(private http: HttpClient) { }
+  
   displayAllUsers() {
     return this.http.get(this.userURL);
   }
   getUserById(id: number) {
     return this.http.get(`${this.userURL}/${id}`);
   }
-  signup(user: any, file: File) {
+  signup(user: any, file: File) {  
     let formData = new FormData()
     formData.append("firstName", user.firstName)
     formData.append("lastName", user.lastName)

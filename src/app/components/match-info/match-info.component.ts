@@ -24,7 +24,7 @@ export class MatchInfoComponent implements OnInit {
     this.matchId = this.activatedRoute.snapshot.paramMap.get('id');
     this.mService.getMatchByID(this.matchId).subscribe((response) => {
       console.log("voici la repense du BE  :", response);
-      this.findedMatch = response.matche;
+      this.findedMatch = response.match;
     })
     //Chercher l'élément ayant le ID souhaité
     // for (let i = 0; i < this.matches.length; i++) {

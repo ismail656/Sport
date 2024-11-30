@@ -13,7 +13,7 @@ export class MatchesTableComponent implements OnInit {
   pageOfItems: Array<any>;
   matches: any;
   allproduct: any;
-  title: string = "Matches liste for : "
+  title: string = "Matches list for : "
   test: string = "abderrahmene";
   actualDate: Date = new Date();
   constructor(private router: Router,
@@ -29,8 +29,8 @@ export class MatchesTableComponent implements OnInit {
 
   deleteMatchById(matchId: any) {
     this.mService.deleteMatchById(matchId).subscribe((response) => {
-      console.log("Voici le resultat reçu du backend : ", response.siDeleted);
-      if (response.siDeleted) {
+      console.log("Voici le resultat reçu du backend : ", response.isDeleted);
+      if (response.isDeleted) {
         this.mService.displayAllMatches().subscribe((reponse) => {
           console.log("Voici le resultat reçu du backend : ", reponse);
           this.matches = reponse.matches

@@ -17,16 +17,15 @@
                 <form #formGroup="ngForm" (ngSubmit)="login()">
                     
                     <div class="form-group">
-                        <input type="email" [(ngModel)]="obj.email" class="form-control"  name="email">
+                        <input type="email" [(ngModel)]="obj.email" class="form-control"  placeholder="Email" name="email">
                     </div>
                     <div class="form-group">
                         <input type="password" [(ngModel)]="obj.pwd" class="form-control" placeholder="Password" name="pwd">
                     </div>
-
+                    <span style="color: red; font-weight: bolder; margin-top: 50px;">{{errorMsg}}</span>
                     <div class="form-group text-center">
                         <input type="submit" class="btn btn-primary py-3 px-5" value="login">
                     </div>
-                    <span style="color: red; font-weight: bolder;">{{errorMsg}}</span>
                 </form>
             </div>
             <div class="col-lg-2"></div>

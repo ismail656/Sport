@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { allMatches } from 'src/app/data/matchesData';
 import { MatchService } from 'src/app/services/match.service';
 
 @Component({

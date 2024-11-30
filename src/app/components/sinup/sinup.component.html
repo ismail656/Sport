@@ -16,14 +16,13 @@
 
                     <div class="form-group">
                         <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
-                        <div
-                            *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].touched || signupForm.controls['firstName'].dirty) ">
+                        <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].touched || signupForm.controls['firstName'].dirty) ">
                             <!--se pointer sur une input idForm.controls['input']-->
                             <div *ngIf="signupForm.controls['firstName'].errors.required">
                                 First Name is Required
                             </div>
                             <div *ngIf="signupForm.controls['firstName'].errors.minlength">
-                                First Name Shoude Have At Least 3 carac
+                                First Name Should Have At Least 3 Characters
                             </div>
                         </div>
                     </div>
@@ -32,10 +31,10 @@
                     <div class="form-group">
                         <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
                         <div
-                            *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].touched || signupForm.controls['lastName'].dirty) ">
+                            *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].touched || signupForm.controls['lastName'].dirty) " >
                             <!--se pointer sur une input idForm.controls['input']-->
-                            <div *ngIf="signupForm.controls['lastName'].errors.required">
-                                Last Name is Required
+                            <div *ngIf="signupForm.controls['lastName'].errors.required" >
+                                Last Name is Required!
                             </div>
                             <div *ngIf="signupForm.controls['lastName'].errors.minlength">
                                 Last Name Shoude Have At Least 4 carac
@@ -48,16 +47,16 @@
                             *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].touched || signupForm.controls['email'].dirty) ">
                             <!--se pointer sur une input idForm.controls['input']-->
                             <div *ngIf="signupForm.controls['email'].errors.required">
-                                pwd is Required
+                                Email is Required!
                             </div>
                             <div *ngIf="signupForm.controls['email'].errors.email">
-                                Email Forma invalid
+                                Email Format invalid!
                             </div>
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" formControlName="pwd" class="form-control" placeholder="Passeword">
+                        <input type="password" formControlName="pwd" class="form-control" placeholder="Password">
                         <div
                             *ngIf="signupForm.controls['pwd'].invalid && (signupForm.controls['pwd'].touched || signupForm.controls['pwd'].dirty) ">
                             <!--se pointer sur une input idForm.controls['input']-->
@@ -77,16 +76,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" formControlName="confirmPwd" class="form-control"
+                        <input type="password" formControlName="confirmPwd" class="form-control"
                             placeholder="Confirme Passeword">
                         <div
                             *ngIf="signupForm.controls['confirmPwd'].invalid && (signupForm.controls['confirmPwd'].touched || signupForm.controls['confirmPwd'].dirty) ">
                             <!--se pointer sur une input idForm.controls['input']-->
                             <div *ngIf="signupForm.controls['confirmPwd'].errors.required">
-                                Confirme pwd is Required
+                                Confirm Password is Required!
                             </div>
                             <div *ngIf="signupForm.controls['confirmPwd'].errors.mustMatch">
-                                pwd et confirmPwd must mutch
+                                Password and Confirm Password  must match!
                             </div>
                         </div>
                     </div>
@@ -96,7 +95,7 @@
                     <div class="text-center my-4">
                         <button class="btn btn-success" (click)="filePicker.click()">Select Your Photo</button>
                     </div>
-                    <div class="my-4">
+                    <div class="my-4 text-center">
                         <img [src]="imagePreview" alt="" width="200px">
                     </div>
                     <div class="form-group text-center">

@@ -31,10 +31,10 @@ export class ResultComponent implements OnInit {
 
   deleteMatchById(matchId: any) {
     this.mService.deleteMatchById(matchId).subscribe((response) => {
-      console.log("Voici le resultat reçu du backend : ", response.siDeleted);
-      if (response.siDeleted) {
+      console.log("Voici le resultat reçu du backend : ", response.isDeleted);
+      if (response.isDeleted) {
         this.mService.displayAllMatches().subscribe((res) => {
-          console.log("Voici le resultat reçu du backend : ", res);
+          console.log("Voici le resultat reçu du backend : ", res.matches);
           this.newMatches.emit(res.matches);
         })
       }

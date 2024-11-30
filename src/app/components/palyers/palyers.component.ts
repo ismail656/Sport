@@ -9,7 +9,7 @@ import { allPlayers } from 'src/app/data/playersData';
 })
 export class PalyersComponent implements OnInit {
 players : any= allPlayers;
-title : string ="Palyers";
+title : string ="Players";
   constructor() { }
 
   ngOnInit() {

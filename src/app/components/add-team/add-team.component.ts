@@ -9,7 +9,6 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class AddTeamComponent implements OnInit {
   title: string = "add-teams";
-  teamForm: FormGroup;
   team: any = {}
 
 

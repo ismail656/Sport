@@ -18,7 +18,7 @@ export class MatchService {
 
   //request : One Object
   getMatchByID(id : any) {
-    return this.http.get<{ matche: any }>(`${this.matchURL}/${id}`)
+    return this.http.get<{ match: any }>(`${this.matchURL}/${id}`)
     // return this.http.get(this.matchURL +"/" +id) // deuxiéme méthode
   }
 
@@ -33,8 +33,8 @@ export class MatchService {
   }
 
   //Request : Boolean
-  deleteMatchById(id: number) {
-    return this.http.delete<{ siDeleted: boolean }>(`${this.matchURL}/${id}`)
+  deleteMatchById(id:number){
+    return this.http.delete<{isDeleted:boolean}>(`${this.matchURL}/${id}`);
   }
 
   //Request : Boolean

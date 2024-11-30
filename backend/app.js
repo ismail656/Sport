@@ -43,7 +43,7 @@ app.use(session({
 
 // Security configuration
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*" );
     res.setHeader(
         "Access-Control-Allow-Headers",
         "Origin, Accept, Content-Type, X-Requested-with, Authorization, expiresIn"
@@ -190,7 +190,7 @@ app.post("/players", (req, res) => {
                 nbr: req.body.nbr,
                 age: req.body.age,
                 position: req.body.position,
-                team: team._id,
+                teamId: team._id,
             });
             player.save((err, doc) => {
                 if (doc) {
@@ -293,20 +293,20 @@ app.post("/users/login", (req, res) => {
     User.findOne({ email: req.body.email })
         .then((doc) => {
             if (!doc) {
-                //User emal is not found
+                //User email is not found
                 res.json({ msg: "0" });
             } else {
-                //User is Founded By email
+                //User is found by email
                 //Compare Crypted PWD with req.body.pwd
                 user = doc;
                 return bcrypt.compare(req.body.pwd, doc.pwd);
             }
         })
-        //get the result of bcrypte.compare
+        //get the result of bcrypt.compare
         .then((pwdResult) => {
             console.log("Her PWD Result : ", pwdResult);
             if (!pwdResult) {
-                //passe Word and crypted pwd are note equale
+                //pwd and crypted pwd are not equal
                 res.json({ msg: "1" });
             } else {
                 //send respense : welcom

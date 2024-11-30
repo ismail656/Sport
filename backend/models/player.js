@@ -9,7 +9,7 @@ const playerSchema = mongoose.Schema({
     position: String,
     teamId : {
         type : mongoose.Schema.Types.ObjectId,
-        rem : "Team"
+        ref : "Team"
     },
 }); 
 

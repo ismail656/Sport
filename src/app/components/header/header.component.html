@@ -10,7 +10,6 @@
 
 <!--Header-->
 <header class="site-navbar py-4" role="banner">
-
     <div class="container">
         <div class="d-flex align-items-center">
             <div class="site-logo">
@@ -27,24 +26,25 @@
                         <li><a routerLink="allTeams" class="nav-link">Teams</a></li>
                         <li>
                             <div class="dropdown" *ngIf="isLoggedIn() && user.role=='admin'">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Admin
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" routerLink="matchForm">Add Match</a>
-                                  <a class="dropdown-item" routerLink="playerForm">Add Player</a>
-                                  <a class="dropdown-item" routerLink="addTeam">Add Team</a>
-                                  <a class="dropdown-item" routerLink="addStadium">Add Stadium</a>
-                                  <a class="dropdown-item" routerLink="admin">Dashboard</a>
+                                    <a class="dropdown-item" routerLink="matchForm">Add Match</a>
+                                    <a class="dropdown-item" routerLink="playerForm">Add Player</a>
+                                    <a class="dropdown-item" routerLink="addTeam">Add Team</a>
+                                    <a class="dropdown-item" routerLink="addStadium">Add Stadium</a>
+                                    <a class="dropdown-item" routerLink="admin">Dashboard</a>
                                 </div>
-                              </div>
+                            </div>
                         </li>
                         <li *ngIf="!isLoggedIn()"><a routerLink="login" class="nav-link">Login</a></li>
                         <li *ngIf="!isLoggedIn()"><a routerLink="signup" class="nav-link">Signup</a></li>
                         <li *ngIf="!isLoggedIn()"><a routerLink="signupAdmin" class="nav-link">Signup Admin</a></li>
                         <li *ngIf="!isLoggedIn()"><a routerLink="searchWeather" class="nav-link">Search Weather</a></li>
                         <li *ngIf="isLoggedIn()"><a (click)="logout()" routerLink="" class="nav-link">Log Out</a></li>
-                        <li > <a class="nav-link">{{user.fName}} {{user.lName}}</a></li>
+                        <li *ngIf="isLoggedIn()"> <a class="nav-link">{{user.fName}} {{user.lName}}</a></li>
 
                     </ul>
                 </nav>
