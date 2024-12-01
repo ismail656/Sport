@@ -9,6 +9,7 @@ import { TeamService } from 'src/app/services/team.service';
   styleUrls: ['./player-form.component.css']
 })
 export class PlayerFormComponent implements OnInit {
+  title: string = "Add Player";
   playerForm: FormGroup;
   teamsTab: any = [];
   teamId: any;
@@ -27,15 +28,13 @@ export class PlayerFormComponent implements OnInit {
     )
     this.playerForm = this.X.group({
       name: ['', [Validators.minLength(4), Validators.required]],
-      age: [''],
-      nbr: [''],
-      position: [''],
+      age: ['',[Validators.required]],
+      nbr: ['',[Validators.required]],
+      position: ['',[Validators.required]],
     })
   }
-  addOrEditePlayer() {
-    console.log("Form Value :", this.playerForm.value)
+  addOrEditPlayer() {
     this.playerForm.value.teamId = this.teamId;
-    console.log("Object To Save :", this.playerForm.value)
     this.playerService.addPlayer(this.playerForm.value ,this.playerForm.value.img).subscribe(
       (response) => {
         console.log("here is message : ", response);

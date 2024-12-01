@@ -13,53 +13,42 @@
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <form [formGroup]="addStadiumForm">
-
                     <div class="form-group">
-                        <input type="text" formControlName="stadeName" class="form-control" placeholder="Name">
-                        <div
-                            *ngIf="addStadiumForm.controls['stadeName'].invalid && (addStadiumForm.controls['stadeName'].touched || addStadiumForm.controls['stadeName'].dirty) ">
-                            <!--se pointer sur une input idForm.controls['input']-->
-                            <div *ngIf="addStadiumForm.controls['stadeName'].errors.required">
-                                First Name is Required
+                        <input type="text" formControlName="stadiumName" class="form-control" placeholder="Name">
+                        <div *ngIf="addStadiumForm.controls['stadiumName'].invalid && (addStadiumForm.controls['stadiumName'].touched || addStadiumForm.controls['stadiumName'].dirty) ">
+                            <div *ngIf="addStadiumForm.controls['stadiumName'].errors.required">
+                                Name is Required!
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <input type="text" formControlName="team" class="form-control" placeholder="Team">
-                        <div
-                            *ngIf="addStadiumForm.controls['team'].invalid && (addStadiumForm.controls['team'].touched || addStadiumForm.controls['team'].dirty) ">
-                            <!--se pointer sur une input idForm.controls['input']-->
+                        <div *ngIf="addStadiumForm.controls['team'].invalid && (addStadiumForm.controls['team'].touched || addStadiumForm.controls['team'].dirty) ">
                             <div *ngIf="addStadiumForm.controls['team'].errors.required">
-                                Last Name is Required
+                                 Team is Required!
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="text" formControlName="city" class="form-control" placeholder="City">
-                        <div
-                            *ngIf="addStadiumForm.controls['city'].invalid && (addStadiumForm.controls['city'].touched || addStadiumForm.controls['city'].dirty) ">
-                            <!--se pointer sur une input idForm.controls['input']-->
+                        <div *ngIf="addStadiumForm.controls['city'].invalid && (addStadiumForm.controls['city'].touched || addStadiumForm.controls['city'].dirty) ">
                             <div *ngIf="addStadiumForm.controls['city'].errors.required">
-                                City is Required
+                                City is Required!
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="number" formControlName="capacity" class="form-control" placeholder="Capacity">
-                        <div
-                            *ngIf="addStadiumForm.controls['capacity'].invalid && (addStadiumForm.controls['capacity'].touched || addStadiumForm.controls['capacity'].dirty) ">
-                            <!--se pointer sur une input idForm.controls['input']-->
+                        <div *ngIf="addStadiumForm.controls['capacity'].invalid && (addStadiumForm.controls['capacity'].touched || addStadiumForm.controls['capacity'].dirty) ">
                             <div *ngIf="addStadiumForm.controls['capacity'].errors.required">
-                                pwd is Required
+                                Capacity is Required!
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group text-center">
-                        <input type="submit" (click)="addStadium()" [disabled]="addStadiumForm.invalid" class="btn btn-primary py-3 px-5" value="Signup">
+                        <input type="submit" (click)="addStadium()" [disabled]="addStadiumForm.invalid" class="btn btn-primary py-3 px-5" value="Add Stadium">
                     </div>
-                    {{addStadiumForm.value | json}}
                 </form>
             </div>
             <div class="col-lg-3"></div>

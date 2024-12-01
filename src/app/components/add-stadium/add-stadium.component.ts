@@ -14,7 +14,7 @@ export class AddStadiumComponent implements OnInit {
 
   ngOnInit() {
     this.addStadiumForm = this.X.group({
-      stadeName: ['', [Validators.required]],
+      stadiumName: ['', [Validators.required]],
       team: ['', [Validators.required]],
       city: ['', [Validators.required]],
       capacity: ['', [Validators.required]],

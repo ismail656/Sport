@@ -8,7 +8,7 @@ import { TeamService } from 'src/app/services/team.service';
   styleUrls: ['./add-team.component.css']
 })
 export class AddTeamComponent implements OnInit {
-  title: string = "add-teams";
+  title: string = "Add Team";
   team: any = {}
 
 
@@ -18,7 +18,6 @@ export class AddTeamComponent implements OnInit {
   }
 
   addTeam() {
-    console.log(this.team);
     this.teamService.addTeam(this.team).subscribe(
       (response) => {
         console.log(response);

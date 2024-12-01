@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.match = this.matches[this.matches.length - 1]
+    this.match = this.matches[this.matches.length - 3]
   }
 
 }
