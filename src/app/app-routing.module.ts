@@ -4,7 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SinupComponent } from './components/sinup/sinup.component';
 import { MatchesComponent } from './components/matches/matches.component';
-import { PalyersComponent } from './components/palyers/palyers.component';
+import { PlayersComponent} from './components/players/players.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { MatchFormComponent } from './components/match-form/match-form.component';
 import { PlayerFormComponent } from './components/player-form/player-form.component';
@@ -23,7 +23,7 @@ const routes: Routes = [
   {path : "signup", component : SinupComponent},
   {path : "signupAdmin", component : SinupComponent},
   {path : "allMatches", component : MatchesComponent},
-  {path : "allPlayers", component : PalyersComponent},
+  {path : "allPlayers", component : PlayersComponent},
   {path : "allTeams", component : TeamsComponent},
   {path : "matchForm", component : MatchFormComponent},
   {path : "playerForm", component : PlayerFormComponent},

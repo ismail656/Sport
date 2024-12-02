@@ -14,7 +14,6 @@ export class MatchesComponent implements OnInit {
 
   ngOnInit() {
     this.mservice.displayAllMatches().subscribe((matchesResponse) => {
-      console.log("here Matches response : ", matchesResponse);
       this.matches=matchesResponse.matches;
     })
   }

@@ -11,6 +11,7 @@ const playerSchema = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : "Team"
     },
+    avatar:String
 }); 
 
 // Affect matchSchema to Match Model Name

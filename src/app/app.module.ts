@@ -6,7 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatchesComponent } from './components/matches/matches.component';
-import { PalyersComponent } from './components/palyers/palyers.component';
+import {PlayersComponent } from './components/players/players.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { CupEventComponent } from './components/cup-event/cup-event.component';
 import { ResultComponent } from './components/result/result.component';
@@ -47,7 +47,7 @@ import { WeatherComponent } from './components/weather/weather.component';
     HomeComponent,
     FooterComponent,
     MatchesComponent,
-    PalyersComponent,
+    PlayersComponent,
     TeamsComponent,
     CupEventComponent,
     ResultComponent,

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PalyersComponent } from './palyers.component';
+import { PalyersComponent } from './players.component';
 
 describe('PalyersComponent', () => {
   let component: PalyersComponent;

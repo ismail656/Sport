@@ -170,7 +170,6 @@ app.get("/teams", (req, res) => {
 
 //4- Busenis Logic : add Team
 app.post("/teams", (req, res) => {
-    console.log("here intoBL : objet reçu =", req.body);
     let team = new Team(req.body);
     team.save();
     res.json({ isAdded: true });
@@ -178,19 +177,24 @@ app.post("/teams", (req, res) => {
 });
 
 //business Logic : add player
-app.post("/players", (req, res) => {
-    console.log("here intoBL : objet reçu =", req.body);
+app.post("/players", multer({ storage: storageConfig }).single("img"),(req, res) => {    
     try {
         Team.findById(req.body.teamId).then((team) => {
             if (!team) {
                 return res.status(404).json({ message: "Team not found" });
             }
+            if (req.file) {
+            let protocol = req.protocol;
+            let host = req.get("host");
+            req.body.avatar = `${protocol}://${host}/avatars/${req.file.filename}`;
+           }
             const player = new Player({
                 name: req.body.name,
                 nbr: req.body.nbr,
                 age: req.body.age,
                 position: req.body.position,
                 teamId: team._id,
+                avatar:req.body.avatar
             });
             player.save((err, doc) => {
                 if (doc) {
@@ -394,7 +398,6 @@ app.put("/matches", (req, res) => {
 // business logic related To players :
 //business Logic : all players
 app.get("/players", (req, res) => {
-    console.log("here intoBL : get all players");
     Player.find().then((docs) => {
         res.json({ players: docs });
     })
@@ -402,7 +405,6 @@ app.get("/players", (req, res) => {
 
 //business Logic : match by ID
 app.get("/players/:id", (req, res) => {
-    console.log("here intoBL : get player by ID");
     let id = req.params.id;
     Player.findOne({ _id: id }).then((doc) => {
         res.json({ player: doc });

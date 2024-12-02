@@ -11,20 +11,20 @@ export class PlayerService {
   constructor(private http: HttpClient) { }
 
   displayAllPlayers() {
-    return this.http.get(this.playerURL);
+    return this.http.get<{ players: any }>(this.playerURL);
   }
   getPlayerByID(id: number) {
     return this.http.get(`${this.playerURL}/${id}`);
   }
   addPlayer(obj: any, file:File) {
     let formData = new FormData()
-    formData.append("name",obj.firstName)
-    formData.append("age",obj.lastName)
-    formData.append("number",obj.email)
-    formData.append("position",obj.pwd)
-    formData.append("tId",obj.role)
+    formData.append("name",obj.name)
+    formData.append("age",obj.nbr)
+    formData.append("nbr",obj.age)
+    formData.append("position",obj.position)
+    formData.append("teamId",obj.teamId)
     formData.append("img",file)
-    return this.http.post<{ message : string }>(this.playerURL, obj);
+    return this.http.post<{ message : string }>(this.playerURL, formData);
   }
   deletePlayerById(id: number) {
     return this.http.delete(`${this.playerURL}/${id}`);

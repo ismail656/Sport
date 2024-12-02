@@ -31,6 +31,7 @@ export class PlayerFormComponent implements OnInit {
       age: ['',[Validators.required]],
       nbr: ['',[Validators.required]],
       position: ['',[Validators.required]],
+      img:['']
     })
   }
   addOrEditPlayer() {
