@@ -55,7 +55,7 @@
                         <img [src]="imagePreview" alt="" width="200px">
                     </div>
                     <div class="form-group text-center">
-                        <input type="submit" class="btn btn-primary py-3 px-5" value="Add Player"
+                        <input type="submit" class="btn btn-primary py-3 px-5" [value]="title"
                             [disabled]="playerForm.invalid" (click)="addOrEditPlayer()">
                     </div>
                 </form>

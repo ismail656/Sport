@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { TeamService } from 'src/app/services/team.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-player-form',
@@ -14,16 +16,30 @@ export class PlayerFormComponent implements OnInit {
   teamsTab: any = [];
   teamId: any;
   imagePreview:any
+  playerId:any
+  player:any
+
   constructor(private X: FormBuilder,
     private teamService: TeamService,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.playerId=this.activatedRoute.snapshot.paramMap.get('id')
+    if (this.playerId) {
+      this.title="Edit Player"
+      this.playerService.getPlayerById(this.playerId).subscribe(
+        (response)=> {
+          this.player=response.player
+          console.log(this.player);
+        }
+      ) 
+  
+    }
     this.teamService.getAllTeams().subscribe(
       (response) => {
         this.teamsTab = response.teams;
-        console.log(this.teamsTab)
       }
     )
     this.playerForm = this.X.group({
@@ -33,19 +49,33 @@ export class PlayerFormComponent implements OnInit {
       position: ['',[Validators.required]],
       img:['']
     })
+    this.playerForm.patchValue(this.player)
   }
-  addOrEditPlayer() {
-    this.playerForm.value.teamId = this.teamId;
-    this.playerService.addPlayer(this.playerForm.value ,this.playerForm.value.img).subscribe(
+  addOrEditPlayer(){
+    if (this.playerId) {
+      this.playerForm.value.teamId = this.teamId;
+      this.playerForm.value.playerId=this.playerId
+      console.log(this.playerForm.value.playerId=this.playerId)
+      this.playerService.editPlayer(this.playerForm.value,this.playerForm.value.img).subscribe(()=>{
+        (response)=>{
+          console.log(response.isEdit);
+        }
+      })
+      
+    } else {
+      this.playerForm.value.teamId = this.teamId;
+      this.playerService.addPlayer(this.playerForm.value ,this.playerForm.value.img).subscribe(
       (response) => {
-        console.log("here is message : ", response);
+        console.log("here is message : ",response);
       }
     )
+      
+    }
+    
   }
 
   getTeamId(event) {
     this.teamId = event.target.value;
-    console.log(this.teamId);
   }
 
   onImageSelected(event: Event) {

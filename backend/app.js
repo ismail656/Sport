@@ -43,7 +43,7 @@ app.use(session({
 
 // Security configuration
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*" );
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
         "Origin, Accept, Content-Type, X-Requested-with, Authorization, expiresIn"
@@ -65,32 +65,33 @@ const MIME_TYPE = {
     'image/png': 'png',
     'image/jpeg': 'jpg',
     'image/jpg': 'jpg'
-   }
+}
 // Multer Config
-   const storageConfig = multer.diskStorage({
+const storageConfig = multer.diskStorage({
     // destination
     destination: (req, file, cb) => {
-    const isValid = MIME_TYPE[file.mimetype];
-    let error = new Error("Mime type is invalid");
-    if (isValid) {
-    error = null;
-    }
-    cb(null, 'backend/images')
+        const isValid = MIME_TYPE[file.mimetype];
+        let error = new Error("Mime type is invalid");
+        if (isValid) {
+            error = null;
+        }
+        cb(null, 'backend/images')
     },
     filename: (req, file, cb) => {
-    const name = file.originalname.toLowerCase().split(' ').join('-');
-    const extension = MIME_TYPE[file.mimetype];
-    const imgName = name + '-' + Date.now() + '-crococoder-' + '.' +
-   extension;
-    cb(null, imgName);
+        const name = file.originalname.toLowerCase().split(' ').join('-');
+        const extension = MIME_TYPE[file.mimetype];
+        const imgName = name + '-' + Date.now() + '-crococoder-' + '.' +
+            extension;
+        cb(null, imgName);
     }
-   });
+});
 
 //Models Importation
 const Match = require("./models/match");
 const Player = require("./models/player");
 const Team = require("./models/team")
 const User = require("./models/user");
+const { log } = require("util");
 
 let allMatches = [
     { id: 1, teamOne: "FCB", teamTwo: "RMD", scoreOne: 1, scoreTwo: 2 },
@@ -176,42 +177,6 @@ app.post("/teams", (req, res) => {
 
 });
 
-//business Logic : add player
-app.post("/players", multer({ storage: storageConfig }).single("img"),(req, res) => {    
-    try {
-        Team.findById(req.body.teamId).then((team) => {
-            if (!team) {
-                return res.status(404).json({ message: "Team not found" });
-            }
-            if (req.file) {
-            let protocol = req.protocol;
-            let host = req.get("host");
-            req.body.avatar = `${protocol}://${host}/avatars/${req.file.filename}`;
-           }
-            const player = new Player({
-                name: req.body.name,
-                nbr: req.body.nbr,
-                age: req.body.age,
-                position: req.body.position,
-                teamId: team._id,
-                avatar:req.body.avatar
-            });
-            player.save((err, doc) => {
-                if (doc) {
-                    team.players.push(player);
-                    team.save();
-                    res.status(201).json(player);
-                }
-            });
-
-        })
-    } catch (error) {
-        return res.json({ message: `message: Error !! : ${error}` })
-    }
-    // let player = new Player(req.body);
-    // player.save();
-    // res.json({ isAdded: true });
-})
 
 //5- Busenis Logic : Edit Team
 app.put("/teams", (req, res) => {
@@ -240,7 +205,7 @@ let users = [
 ];
 
 //1- signup bl
-app.post("/users/signup", multer({storage:storageConfig}).single("img"),(req, res) => {
+app.post("/users/signup", multer({ storage: storageConfig }).single("img"), (req, res) => {
     console.log("here intoBL : objet reçu =", req.body);
     bcrypt.hash(req.body.pwd, 10).then((cryptedPwd) => {
         console.log("here cryptedPwd", cryptedPwd);
@@ -403,7 +368,7 @@ app.get("/players", (req, res) => {
     })
 })
 
-//business Logic : match by ID
+//business Logic : gte player by id
 app.get("/players/:id", (req, res) => {
     let id = req.params.id;
     Player.findOne({ _id: id }).then((doc) => {
@@ -411,7 +376,44 @@ app.get("/players/:id", (req, res) => {
     })
 })
 
-//business Logic : match by ID
+//business Logic : add player
+app.post("/players", multer({ storage: storageConfig }).single("img"), (req, res) => {
+    try {
+        Team.findById(req.body.teamId).then((team) => {
+            if (!team) {
+                return res.status(404).json({ message: "Team not found" });
+            }
+            if (req.file) {
+                let protocol = req.protocol;
+                let host = req.get("host");
+                req.body.avatar = `${protocol}://${host}/avatars/${req.file.filename}`;
+            }
+            const player = new Player({
+                name: req.body.name,
+                nbr: req.body.nbr,
+                age: req.body.age,
+                position: req.body.position,
+                teamId: team._id,
+                avatar: req.body.avatar
+            });
+            player.save((err, doc) => {
+                if (doc) {
+                    team.players.push(player);
+                    team.save();
+                    res.status(201).json(player);
+                }
+            });
+
+        })
+    } catch (error) {
+        return res.json({ message: `message: Error !! : ${error}` })
+    }
+    // let player = new Player(req.body);
+    // player.save();
+    // res.json({ isAdded: true });
+})
+
+//business Logic : delete player by id
 app.delete("/players/:id", (req, res) => {
     console.log("here intoBL : delete player by ID");
     let id = req.params.id;
@@ -423,32 +425,50 @@ app.delete("/players/:id", (req, res) => {
 
 
 
-//business Logic : match by ID
-app.put("/players", (req, res) => {
-    console.log("here intoBL : update player");
-    Player.updateOne({ _id: req.body._id }, req.body).then((updatedResponse) => {
-        console.log("Her is response after update :", updatedResponse)
-        updatedResponse.nModified ?
-            res.json({ isEdit: true }) :
-            res.json({ isEdit: false });
+//business Logic : edit player by id
+app.put("/players", multer({ storage: storageConfig }).single("img"), (req, res) => {
+    Team.findById(req.body.teamId).then((team) => {
+        if (!team) {
+            return res.status(404).json({ message: "Team not found" });
+        }
+        if (req.file) {
+            let protocol = req.protocol;
+            let host = req.get("host");
+            req.body.avatar = `${protocol}://${host}/avatars/${req.file.filename}`;
+        }
+        const player = {
+            name: req.body.name,
+            nbr: req.body.nbr,
+            age: req.body.age,
+            position: req.body.position,
+            teamId: team._id,
+            avatar: req.body.avatar }
+            console.log(req.body.id);
+        Player.updateOne({ _id: req.body.id }, player).then((updatedResponse) => {
+            console.log("Her is response after update :", updatedResponse)
+            updatedResponse.nModified ?
+                res.json({ isEdit: true }) :
+                res.json({ isEdit: false });
+                
+        })
     })
 })
 
 // weather search
 app.post("/weather", (req, res) => {
     console.log("this is city", req.body);
-    let key= "6d3b47bcd18186591e697b8731c32acc"
+    let key = "6d3b47bcd18186591e697b8731c32acc"
     let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${req.body.searchWeather}&appid=${key}`
     axios.get(apiURL).then(
-        (response)=> {
+        (response) => {
             console.log("here response from API", response.data);
         }
 
     )
-//    let result =  {
-//     temperature: this.response.data.main.temp
-//     : this.response.data.main.
-//    }    
+    //    let result =  {
+    //     temperature: this.response.data.main.temp
+    //     : this.response.data.main.
+    //    }    
 })
 
 

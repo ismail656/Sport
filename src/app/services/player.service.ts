@@ -13,8 +13,8 @@ export class PlayerService {
   displayAllPlayers() {
     return this.http.get<{ players: any }>(this.playerURL);
   }
-  getPlayerByID(id: number) {
-    return this.http.get(`${this.playerURL}/${id}`);
+  getPlayerById(id: number) {
+    return this.http.get<{ player: any }>(`${this.playerURL}/${id}`);
   }
   addPlayer(obj: any, file:File) {
     let formData = new FormData()
@@ -29,7 +29,15 @@ export class PlayerService {
   deletePlayerById(id: number) {
     return this.http.delete(`${this.playerURL}/${id}`);
   }
-  editPlayer(obj: any) {
-    return this.http.put(this.playerURL, obj);
+  editPlayer(obj: any,file:File) {
+    let formData = new FormData()
+    formData.append("id",obj.playerId)
+    formData.append("name",obj.name)
+    formData.append("age",obj.nbr)
+    formData.append("nbr",obj.age)
+    formData.append("position",obj.position)
+    formData.append("teamId",obj.teamId)
+    formData.append("img",file)
+    return this.http.put<{ isEdit : boolean }>(this.playerURL, formData);
   }
 }

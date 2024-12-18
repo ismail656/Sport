@@ -14,13 +14,13 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let player of players">
-                      <td>{{player.id}}</td>
+                      <td>{{player._id}}</td>
                       <td><strong class="text-white">{{player.name}}</strong></td>
                       <td> {{player.age}} </td>
-                      <td> {{player.number}}</td>
+                      <td> {{player.nbr}}</td>
                       <td> {{player.position}} </td>
                       <td> <button class="btn btn-success">Display</button> 
-                         <button class="btn btn-warning">Edit</button> 
+                         <button class="btn btn-warning" (click)="goToEditPlayers(player._id)">Edit</button> 
                          <button class="btn btn-danger">Delete</button> </td>
                     </tr>
                     

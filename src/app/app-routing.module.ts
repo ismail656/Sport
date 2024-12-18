@@ -35,6 +35,8 @@ const routes: Routes = [
   {path : "search", component : SearchComponent },
   {path : "addStadium", component : AddStadiumComponent },
   {path : "searchWeather", component : WeatherComponent },
+  {path : "editPlayers/:id", component : PlayerFormComponent },
+
 ];
 
 @NgModule({
